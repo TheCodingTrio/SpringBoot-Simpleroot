@@ -1,6 +1,11 @@
 package com.example.simpleroot.controller;
 
+import com.example.simpleroot.dto.UserDTO;
+import com.example.simpleroot.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 /*@RestController: This annotation is a combination of @Controller and @ResponseBody.
@@ -24,24 +29,41 @@ By specifying this annotation, you can configure the allowed origins, HTTP metho
 and other CORS-related settings*/
 public class UserController {
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/getUser")
-    public String getUser(){
-        return "Simple-Root";
+    public List<UserDTO> getUser(){
+        return userService.getAllUsers();
     }
 
     @PostMapping("/saveUser")
-    public String saveUser(){
-        return "User Saved !";
+    public UserDTO saveUser(@RequestBody UserDTO userDTO){
+        return userService.saveUser(userDTO);
     }
+    //From the frontend we send data in JSON object type format.
+    //So the incoming JSON object type data can be converted to java object type using the @RequestBody annotation
 
     @PutMapping("/updateUser")
-    public String updateUser(){
-        return "User Updated !";
+    public UserDTO updateUser(@RequestBody UserDTO userDTO){
+        return  userService.updateUser(userDTO);
     }
 
     @DeleteMapping("/deleteUser")
-    public String deleteUser(){
-        return "User Deleted !";
+    public boolean deleteUser(@RequestBody UserDTO userDTO){
+        return userService.deleteUser(userDTO);
+    }
+
+    @GetMapping("/getUserByUserId/{userID}")
+    public UserDTO getUserByUserID(@PathVariable String userID ){
+        return userService.getUserByUserID(userID);
+
+    }
+
+    @GetMapping("/getUserByUserIdAndAddress/{userID}/{address}")
+    public UserDTO getUserByUserIDAndAddress(@PathVariable String userID, @PathVariable String address ){
+        System.out.println("User ID : " + userID + "Address : " + address);
+        return userService.getUserByUserIDAndAddress(userID, address);
     }
 
 
