@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 //since we are going to use the JPA repo we extend that here
 public interface UserRepo extends JpaRepository<User, Integer> {
+
+
 }
 
 
