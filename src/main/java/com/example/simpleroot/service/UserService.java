@@ -22,6 +22,6 @@ public class UserService {
         //So we have to Map these two, the entity and the DTO
         //To do this we need to add the modelmapper dependency
         //after add the dependency we need to inject the modelmapper to our project as a @Bean
-        //that happens in the main method (CHECK!!)
+        //that happens in the class where we have the main method (CHECK!!)
     }
 }
