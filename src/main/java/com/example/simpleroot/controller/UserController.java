@@ -68,3 +68,9 @@ public class UserController {
 
 
 } // end of UserController class
+
+
+//Notes
+/*
+The @PathVariable annotation in Spring is used to bind a method parameter to a path variable in a URL. It is commonly used in Spring MVC applications to extract dynamic values from the URL and use them as inputs in controller methods.
+*/
