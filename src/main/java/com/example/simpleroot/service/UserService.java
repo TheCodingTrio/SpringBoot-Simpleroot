@@ -73,11 +73,15 @@ In summary, the getAllUsers() method retrieves a list of User entities from the 
         return true;
     }
 
+    //user id > user details
+    //select * from user where id = 1
     public UserDTO getUserByUserID(String userID){
         User user = userRepo.getUserByUserId(userID);
         return modelMapper.map(user, UserDTO.class);
     }
 
+    //user id, address  > user details
+    //select * from user where id = 1 and address = "ekala"
     public UserDTO getUserByUserIDAndAddress(String userId, String address){
         User user = userRepo.getUserByUserIdAndAddress(userId, address);
         return modelMapper.map(user, UserDTO.class);
